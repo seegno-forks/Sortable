@@ -21,7 +21,11 @@ module.exports = function(api) {
 	}
 
 	return {
-		plugins: ['@babel/plugin-transform-object-assign'],
+		plugins: [
+			'@babel/plugin-transform-object-assign',
+			'@babel/plugin-transform-optional-chaining',
+			'@babel/plugin-transform-nullish-coalescing-operator'
+		],
 		presets
 	};
 };

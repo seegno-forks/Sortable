@@ -136,8 +136,9 @@ function AutoScrollPlugin() {
 			} else {
 				// if DnD is enabled (and browser has good autoscrolling), first autoscroll will already scroll, so get parent autoscroll of first autoscroll
 				if (!this.options.bubbleScroll || getParentAutoScrollElement(elem, true) === getWindowScrollingElement()) {
-					clearAutoScrolls();
-					return;
+          if (!autoScrollWindow(evt)) {
+            return;
+          }
 				}
 				autoScroll(evt, this.options, getParentAutoScrollElement(elem, false), false);
 			}
@@ -148,6 +149,23 @@ function AutoScrollPlugin() {
 		pluginName: 'scroll',
 		initializeByDefault: true
 	});
+}
+
+function autoScrollWindow(evt, scrollSpeed = 5, triggerThreshold = 75) {
+  evt.preventDefault();
+
+  const { clientY } = event;
+  const viewportHeight = window.innerHeight;
+
+  if (clientY <= triggerThreshold) {
+    window.scrollBy({ top: -scrollSpeed });
+
+    return true;
+  } else if (clientY >= viewportHeight - triggerThreshold) {
+    window.scrollBy({ top: scrollSpeed });
+
+    return true;
+  }
 }
 
 function clearAutoScrolls() {
