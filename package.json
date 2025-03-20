@@ -5,6 +5,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.4.4",
 		"@babel/plugin-transform-object-assign": "^7.2.0",
+		"@babel/plugin-transform-optional-chaining": "^7.25.9",
 		"@babel/preset-env": "^7.4.4",
 		"rollup": "^1.11.3",
 		"rollup-plugin-babel": "^4.3.2",
@@ -53,5 +54,8 @@
 		"vue",
 		"mixin"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"dependencies": {
+		"@babel/plugin-transform-nullish-coalescing-operator": "^7.26.6"
+	}
 }
